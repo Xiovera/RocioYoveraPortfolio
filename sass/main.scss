@@ -1,0 +1,10 @@
+$font-size: 30px;
+$color-principal: #F00000;
+
+body{
+	font-size: $font-size;
+	color: $color-principal;
+}
+h1{
+	font-size: $font-size/2;
+}
