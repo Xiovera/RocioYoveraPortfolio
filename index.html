@@ -31,20 +31,7 @@
    	 			text-align: center;
 			}
 		</style>
-		<script src="rainyday.js"></script>
-		<script>
-			function run() {
-				var image = document.getElementById('background');
-				image.onload = function() {
-					var engine = new RainyDay({
-						image: this
-					});
-					engine.rain([ [0, 2, 200], [3, 3, 1] ], 100);
-				};
-				image.crossOrigin = 'anonymous';
-            	image.src = 'http://i.imgur.com/OVQkDRE.jpg';
-            }
-		</script> 
+		
 </head>
 <body onload="run();">
 	<header>
@@ -54,10 +41,10 @@
 	<!----------- end header------>
 	<section class="hero-section">
 	<div class="container">
-		<div class="row">
+		<div class="row" id="parent">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 			 <h1>Rocio Yovera</h1>
-			<img id="background" alt="background" src="" style="z-index:-1" />
+			<img id="background" alt="background" src="img/mistiok1.png" style="z-index:-1" />
 
 	
 				
@@ -88,5 +75,34 @@
 					<p>Rocio Yovera © Laboratoria</p>
 			
 	</footer>
+
+
+	<script src="rainyday.js"></script>
+		<script>
+			function run() {
+				var image = document.getElementById('background');
+				image.crossOrigin = "Anonymous";
+				var parent = document.getElementById("parent");
+				var engine = new RainyDay({
+    image: image,         // Image element
+                            // This value is required
+    parentElement: parent, // Element to be used as a parent for the canvas
+                            // If not provided assuming the 'body' element
+    crop: [0, 0, 50, 60],   // Coordinates if only a part of the image should be used
+                            // If not provided entire image will be used
+    blur: 10,               // Defines blur due to rain effect
+                            // Assuming 10 if not provided
+                            // Use 0 value to disable the blur
+    opacity: 1              // Opacity of rain drops
+                            // Assuming 1 if not provided
+});
+engine.rain(
+    [
+        [1, 0, 20],         // add 20 drops of size 1...
+        [3, 3, 1]           // ... and 1 drop of size from 3 - 6 ...
+    ],                       
+    100);
+            }
+		</script> 
 </body>
 </html>
